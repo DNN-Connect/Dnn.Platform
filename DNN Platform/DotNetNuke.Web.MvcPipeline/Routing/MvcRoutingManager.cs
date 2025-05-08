@@ -38,19 +38,19 @@ namespace DotNetNuke.Web.MvcPipeline.Routing
 
         internal ITypeLocator TypeLocator { get; set; }
 
-        public Route MapRoute(string moduleFolderName, string routeName, string url, string[] namespaces)
+        public Route MapRoute(string moduleName, string moduleFolderName, string routeName, string url, string[] namespaces)
         {
-            return this.MapRoute(moduleFolderName, routeName, url, null /* defaults */, null /* constraints */, namespaces);
+            return this.MapRoute(moduleName, moduleFolderName, routeName, url, null /* defaults */, null /* constraints */, namespaces);
         }
 
         /// <inheritdoc/>
-        public Route MapRoute(string moduleFolderName, string routeName, string url, object defaults, string[] namespaces)
+        public Route MapRoute(string moduleName, string moduleFolderName, string routeName, string url, object defaults, string[] namespaces)
         {
-            return this.MapRoute(moduleFolderName, routeName, url, defaults, null /* constraints */, namespaces);
+            return this.MapRoute(moduleName, moduleFolderName, routeName, url, defaults, null /* constraints */, namespaces);
         }
 
         /// <inheritdoc/>
-        public Route MapRoute(string moduleFolderName, string routeName, string url, object defaults, object constraints, string[] namespaces)
+        public Route MapRoute(string moduleName, string moduleFolderName, string routeName, string url, object defaults, object constraints, string[] namespaces)
         {
             if (namespaces == null || namespaces.Length == 0 || string.IsNullOrEmpty(namespaces[0]))
             {
@@ -60,6 +60,7 @@ namespace DotNetNuke.Web.MvcPipeline.Routing
                     "namespaces"));
             }
 
+            Requires.NotNullOrEmpty("moduleName", moduleName);
             Requires.NotNullOrEmpty("moduleFolderName", moduleFolderName);
 
             url = url.Trim('/', '\\');
@@ -76,9 +77,9 @@ namespace DotNetNuke.Web.MvcPipeline.Routing
             {
                 var fullRouteName = this.portalAliasMvcRouteManager.GetRouteName(moduleFolderName, routeName, count);
                 var routeUrl = this.portalAliasMvcRouteManager.GetRouteUrl(moduleFolderName, url, count);
-                route = MapRouteWithNamespace(fullRouteName, moduleFolderName, routeUrl, defaults, constraints, namespaces);
+                route = MapRouteWithNamespace(fullRouteName, moduleName, routeUrl, defaults, constraints, namespaces);
                 this.routes.Add(route);
-                Logger.Trace("Mapping route: " + fullRouteName + " Area="+moduleFolderName + " @ " + routeUrl);
+                Logger.Trace("Mapping route: " + fullRouteName + " Area=" + moduleName + " @ " + routeUrl);
             }
 
             return route;

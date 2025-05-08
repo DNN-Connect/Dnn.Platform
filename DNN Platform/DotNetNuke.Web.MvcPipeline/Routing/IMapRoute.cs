@@ -17,7 +17,7 @@ namespace DotNetNuke.Web.MvcPipeline.Routing
         /// <param name="namespaces">The namespace(s) in which to search for the controllers for this route.</param>
         /// <returns>A list of all routes that were registered.</returns>
         /// <remarks>The combination of moduleFolderName and routeName must be unique for each route.</remarks>
-        Route MapRoute(string moduleFolderName, string routeName, string url, string[] namespaces);
+        Route MapRoute(string moduleName, string moduleFolderName, string routeName, string url, string[] namespaces);
 
         /// <summary>Sets up the route(s) for DotNetNuke MVC Controls.</summary>
         /// <param name="moduleFolderName">The name of the folder under DesktopModules in which your module resides.</param>
@@ -27,7 +27,7 @@ namespace DotNetNuke.Web.MvcPipeline.Routing
         /// <param name="namespaces">The namespace(s) in which to search for the controllers for this route.</param>
         /// <returns>A list of all routes that were registered.</returns>
         /// <remarks>The combination of moduleFolderName and routeName must be unique for each route.</remarks>
-        Route MapRoute(string moduleFolderName, string routeName, string url, object defaults, string[] namespaces);
+        Route MapRoute(string moduleName, string moduleFolderName, string routeName, string url, object defaults, string[] namespaces);
 
         /// <summary>Sets up the route(s) for DotNetNuke MVC Controls.</summary>
         /// <param name="moduleFolderName">The name of the folder under DesktopModules in which your module resides.</param>
@@ -38,6 +38,6 @@ namespace DotNetNuke.Web.MvcPipeline.Routing
         /// <param name="namespaces">The namespace(s) in which to search for the controllers for this route.</param>
         /// <returns>A list of all routes that were registered.</returns>
         /// <remarks>The combination of moduleFolderName and routeName must be unique for each route.</remarks>
-        Route MapRoute(string moduleFolderName, string routeName, string url, object defaults, object constraints, string[] namespaces);
+        Route MapRoute(string moduleName, string moduleFolderName, string routeName, string url, object defaults, object constraints, string[] namespaces);
     }
 }

@@ -4,12 +4,6 @@
 
 namespace DotNetNuke.Modules.Html.Mvc
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Web;
-
     using DotNetNuke.Web.MvcPipeline.Routing;
 
     public class RouteConfig : IMvcRouteMapper
@@ -17,6 +11,7 @@ namespace DotNetNuke.Modules.Html.Mvc
         public void RegisterRoutes(IMapRoute mapRouteManager)
         {
             mapRouteManager.MapRoute(
+                "DNN_HTML",
                 "HTML",
                 "Html",
                 "{controller}/{action}",
